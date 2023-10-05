@@ -1,6 +1,6 @@
 import styles from './Comment.module.css';
 import moment from 'moment';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const agoTime = (timestamp) => moment(timestamp).fromNow();
@@ -31,22 +31,21 @@ const Comment = ({ text, children, userName, timestamp, id }) => {
           {collapsed && <span>more</span>}
         </span>
       </div>
-      {!collapsed && (
-        <div>
-          {text}
-          {children &&
-            children.map((item) => (
-              <Comment
-                text={item.text}
-                children={item.children}
-                timestamp={item.timestamp}
-                userName={item.user.name}
-                id={item.id}
-                key={'comment' + item.id}
-              />
-            ))}
-        </div>
-      )}
+
+      <div className={(collapsed && styles.displayNone) || styles.displayBlock}>
+        {text}
+        {children &&
+          children.map((item) => (
+            <Comment
+              text={item.text}
+              children={item.children}
+              timestamp={item.timestamp}
+              userName={item.user.name}
+              id={item.id}
+              key={'comment' + item.id}
+            />
+          ))}
+      </div>
     </div>
   );
 };

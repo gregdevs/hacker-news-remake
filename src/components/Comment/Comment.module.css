@@ -32,3 +32,10 @@ used the same font stylings(family/size) from the Hackernews site to keep it sim
 .pointer {
   cursor: pointer;
 }
+
+.displayNone {
+  display: none;
+}
+.displayBlock {
+  display: block;
+}

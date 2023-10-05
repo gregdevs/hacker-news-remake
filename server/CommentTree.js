@@ -14,7 +14,7 @@ class CommentTree {
   }
 
   sortedByUpvotes() {
-    return this.data.sort((a, b) => b.upvotes - a.upvotes);
+    return this.data.sort((a, b) => b.timestamp - a.timestamp);
   }
 
   checkForIdMatch(items, parentId) {
@@ -26,7 +26,7 @@ class CommentTree {
   }
   findChildren(data) {
     return data.map((item) => {
-      item.children = [...this.checkForIdMatch(this.dataByUpvotes, item.id)];
+      item.children = this.checkForIdMatch(this.dataByUpvotes, item.id);
       this.findChildren(item.children);
       return item;
     });
