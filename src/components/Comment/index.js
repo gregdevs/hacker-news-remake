@@ -1,6 +1,6 @@
 import styles from './Comment.module.css';
 import moment from 'moment';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const agoTime = (timestamp) => moment(timestamp).fromNow();
