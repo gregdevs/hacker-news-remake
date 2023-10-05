@@ -18,18 +18,16 @@ const getComments = async () => {
  */
 const findComment = (data, id) => {
   if (!id) return data;
-  return data
-    .map((item) => {
-      // base case
-      if (item.id === id) return item;
-      // the top 3 parents are not a match, lets call the function on the items children
-      if (item && item.children.length > 0) {
-        return findComment(item.children, id);
-      }
-      return null;
-    })
-    .flat()
-    .filter((i) => i);
+  return data.flatMap((item) => {
+    // base case
+    if (item.id === id) return item;
+    // the top 3 parents are not a match, lets call the function on the items children
+    if (item && item.children.length > 0) {
+      return findComment(item.children, id);
+    } else {
+      return item.children;
+    }
+  });
 };
 
 const AllComments = () => {
